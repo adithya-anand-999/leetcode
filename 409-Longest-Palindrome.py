@@ -2,19 +2,19 @@ class Solution:
     def longestPalindrome(self, s: str) -> int:
         freq = {}
         res = 0
-        addedOne = False
+        seenOne = False
 
         for c in s:
             if c not in freq:
-                freq[c] = [1,True]
+                freq[c] = 1
             else:
-                freq[c][0] += 1
-                freq[c][1] = not freq[c][1]
-        for cnt,odd in freq.values():
-            if odd:
-                res+=cnt-1
-                addedOne = True
-            else:
+                freq[c]+=1
+        
+        for cnt in freq.values():
+            if cnt%2 == 0:
                 res+=cnt
-        if addedOne:res+=1
+            else:
+                seenOne = True
+                res+=cnt-1
+        if seenOne: res+=1
         return res
