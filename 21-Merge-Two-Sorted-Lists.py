@@ -5,18 +5,14 @@
 #         self.next = next
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        dummy = cur = ListNode()
-
+        dummy = curr = ListNode()
         while list1 and list2:
             if list1.val < list2.val:
-                cur.next = list1
+                curr.next = list1
                 list1 = list1.next
             else:
-                cur.next = list2
+                curr.next = list2
                 list2 = list2.next
-            cur = cur.next
-        
-        if list1: cur.next = list1
-        #you can do else here because we are only modifying one list at a time, this means even if the lists are of the same length we exit the while loop with one loop still having remaining nodes. So we only have to check on, then can safley add the other. Both can never be true as then the while loop will continue iterating. 
-        else: cur.next = list2
+            curr = curr.next
+        curr.next = list1 if list1 else list2
         return dummy.next
