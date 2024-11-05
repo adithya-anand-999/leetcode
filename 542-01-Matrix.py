@@ -8,14 +8,12 @@ class Solution:
             for j in range(n):
                 if mat[i][j] == 0: queue.append((i,j))
                 else: mat[i][j] = MAX_VAL
-        
-        dir = [(1,0), (0,1), (-1,0), (0,-1)]
         while queue:
             row,col = queue.popleft()
+            dir = [(1,0), (0,1), (-1,0), (0,-1)]
             for dr,dc in dir:
                 r,c = row+dr, col+dc
                 if 0<=r<m and 0<=c<n and mat[r][c] > 1+mat[row][col]:
-                    queue.append((r,c))
                     mat[r][c] = 1+mat[row][col]
+                    queue.append((r,c))
         return mat
-
