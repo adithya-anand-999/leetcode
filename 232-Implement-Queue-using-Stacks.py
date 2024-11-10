@@ -3,12 +3,14 @@ class MyQueue:
     def __init__(self):
         self.stack = []
         self.holder = []
+
     def push(self, x: int) -> None:
         for _ in range(len(self.stack)):
             self.holder.append(self.stack.pop())
-        self.holder.append(x)
+        self.stack.append(x)
         for _ in range(len(self.holder)):
             self.stack.append(self.holder.pop())
+
     def pop(self) -> int:
         return self.stack.pop()
 
