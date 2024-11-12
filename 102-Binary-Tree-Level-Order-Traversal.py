@@ -7,19 +7,19 @@
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         if not root: return []
-        prev = 0
-        queue = deque([(root,0)])
+        prev_lvl = 0
         res = [[]]
+        queue = deque([(root, 0)])
+        #recursive traversal is for dfs, for bfs iterative is easier
 
         while queue:
             node,lvl = queue.popleft()
-            if lvl != prev:
+            if lvl != prev_lvl:
                 res.append([])
-                prev = lvl
-            # print(node.val,lvl)
-            res[prev].append(node.val)
-
-            if node.left:queue.append((node.left, lvl+1))
-            if node.right:queue.append((node.right, lvl+1))
+                prev_lvl+=1
+            res[lvl].append(node.val)
+            if node.left: queue.append((node.left, lvl+1))
+            if node.right: queue.append((node.right, lvl+1))
         return res
-
+        
+        
