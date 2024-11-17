@@ -8,6 +8,7 @@ class Solution:
         prev = None
         curr = head
 
+#the edge case where head does not exist
         while curr:
             holder = curr.next
             curr.next = prev
