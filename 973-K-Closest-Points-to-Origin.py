@@ -5,6 +5,8 @@ class Solution:
         max_heap = []
 
         for x,y in points:
-            heapq.heappush(max_heap, (-math.sqrt(x**2 + y**2), (x,y)))
-            if len(max_heap) > k: heapq.heappop(max_heap)
+            dist = math.sqrt(x**2 + y**2)
+            heapq.heappush(max_heap, (-dist, (x,y)))
+            if len(max_heap) > k:
+                heapq.heappop(max_heap)
         return [point for (_,point) in max_heap]
