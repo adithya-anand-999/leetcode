@@ -7,11 +7,14 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        def help(node):
-            if node.val > p.val and node.val > q.val:
-                return help(node.left)
-            if node.val < p.val and node.val < q.val:
-                return help(node.right)
-            else:
-                return node
-        return help(root)
+        queue = deque([root])
+        p_val, q_val = p.val, q.val
+
+        while queue:
+            curr = queue.popleft()
+            curr_val = curr.val
+            # if (curr_val >= p_val and curr_val <= q_val) or curr_val == q_val or curr_val == p_val: return curr
+
+            if curr_val > p_val and curr_val > q_val: queue.append(curr.left)
+            elif curr_val < p_val and curr_val < q_val: queue.append(curr.right)
+            else: return curr
