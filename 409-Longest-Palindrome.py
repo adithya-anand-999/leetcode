@@ -1,16 +1,16 @@
 class Solution:
     def longestPalindrome(self, s: str) -> int:
-        freq = defaultdict(int)
-        for c in s: 
-            freq[c]+=1
+        count = defaultdict(int)
+        for c in s: count[c]+=1
+
+        oddSeen = False
+        length = 0 
+
+        for num in count.values():
+            if num%2 == 0:
+                length+=num
+            else:
+                oddSeen = True
+                length+=(num-1)
         
-        add_one = False
-        res = 0
-        for val in freq.values():
-            if val%2 == 0:
-                res += val
-            else: 
-                add_one = True
-                res+=(val-1)
-        if add_one: res+=1
-        return res        
+        return length+1 if oddSeen else length
