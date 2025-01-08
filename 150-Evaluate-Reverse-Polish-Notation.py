@@ -1,14 +1,17 @@
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
         stack = []
-        for c in tokens:
-            if c == '+': stack.append(stack.pop() + stack.pop())
-            elif c == '*': stack.append(stack.pop() * stack.pop())
-            elif c == '/': 
-                right = stack.pop()
-                stack.append(int(stack.pop() / right))
-            elif c == '-':
-                right = stack.pop()
-                stack.append(stack.pop() - right)
-            else: stack.append(int(c))
-        return stack[-1]
+
+        for t in tokens:
+            if t == '+':
+                stack.append(stack.pop() + stack.pop()) # no need to check if stack non empty as told to be valid
+            elif t == '-':
+                r = stack.pop()
+                stack.append(stack.pop() - r)
+            elif t == '*':
+                stack.append(stack.pop() * stack.pop())
+            elif t == '/':
+                r = stack.pop()
+                stack.append(int(stack.pop() / r))
+            else: stack.append(int(t))
+        return stack.pop()
