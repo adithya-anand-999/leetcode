@@ -1,24 +1,25 @@
 class MyQueue:
 
     def __init__(self):
-        self.stack = []
+        self.queue = []
         self.holder = []
 
     def push(self, x: int) -> None:
-        for _ in range(len(self.stack)):
-            self.holder.append(self.stack.pop())
-        self.stack.append(x)
-        for _ in range(len(self.holder)):
-            self.stack.append(self.holder.pop())
+        n = len(self.queue)
+        for _ in range(n):
+            self.holder.append(self.queue.pop())
+        self.queue.append(x)
+        for _ in range(n):
+            self.queue.append(self.holder.pop())
 
     def pop(self) -> int:
-        return self.stack.pop()
+        return self.queue.pop()
 
     def peek(self) -> int:
-        return self.stack[-1]
+        return self.queue[-1]
 
     def empty(self) -> bool:
-        return not self.stack
+        return not self.queue
 
 
 # Your MyQueue object will be instantiated and called as such:
