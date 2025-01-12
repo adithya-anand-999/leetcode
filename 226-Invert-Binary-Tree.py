@@ -7,9 +7,7 @@
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         def help(node):
-            if not node: return
-            node.left,node.right = help(node.right),help(node.left)
-            return node
+            if not node: return 
+            node.left, node.right = help(node.right), help(node.left)
+            return node  #This bubbels up the node to the layer above. 
         return help(root)
-
-
