@@ -1,17 +1,16 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         res = []
-        n = len(nums)
 
-        def help(trace,candidates):
-            if candidates == []:
+        def help(trace,cands):
+            # print(cands)
+            if not cands:
                 res.append(trace[:])
                 return
             
-            # print(candidates)
-            for i in range(len(candidates)):
-                trace.append(candidates[i])
-                help(trace,candidates[:i] + candidates[i+1:])
+            for i,c in enumerate(cands):
+                trace.append(c)
+                help(trace, cands[:i]+cands[i+1:])
                 trace.pop()
         help([],nums)
         return res
