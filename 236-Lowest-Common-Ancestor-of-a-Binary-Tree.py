@@ -10,7 +10,6 @@ class Solution:
         def help(node):
             if not node: return False
             if node == p or node == q: return node
-
             left,right = help(node.left),help(node.right)
             if left and right: return node
             return left or right
