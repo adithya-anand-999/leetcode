@@ -14,10 +14,11 @@ class TimeMap:
         while l<=r:
             mid = (l+r)//2
             if vals[mid][0] == timestamp: return vals[mid][1]
-
             if vals[mid][0] > timestamp: r = mid-1
             else: l = mid+1
-        return vals[r][1] if r>=0 else "" # r check makes sure the potential val is less than given timestamp. 
+        return vals[r][1] if r>=0 else ""
+
+
 
 
 # Your TimeMap object will be instantiated and called as such:
