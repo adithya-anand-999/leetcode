@@ -8,11 +8,8 @@ class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         def help(node, min, max):
             if not node: return True
-            val = node.val
-            if min >= val or val >= max: return False
-
-            if not help(node.left, min, val) or not help(node.right, val, max):
+            if min >= node.val or node.val >= max: return False
+            if not help(node.left, min, node.val) or not help(node.right, node.val, max):
                 return False
             return True
-        
         return help(root, float('-inf'), float('inf'))
