@@ -13,6 +13,5 @@ class Solution:
 
         root.left = self.buildTree(preorder[1:root_idx+1], inorder[:root_idx])
         root.right = self.buildTree(preorder[root_idx+1:], inorder[root_idx+1:])
-        
+
         return root
-    
