@@ -3,17 +3,15 @@ class Solution:
         res = []
         n = len(candidates)
 
-        def help(val, trace, start):
-            if val == 0:
+        def help(sum,trace,start):
+            if sum == 0: 
                 res.append(trace[:])
                 return
-            if val < 0:
-                return
-            
+            if sum < 0: return
+
             for i in range(start,n):
-                if candidates[i] <= val:
-                    trace.append(candidates[i])
-                    help(val-candidates[i], trace, i)
-                    trace.pop()
+                trace.append(candidates[i])
+                help(sum-candidates[i], trace, i)
+                trace.pop()
         help(target,[],0)
         return res
