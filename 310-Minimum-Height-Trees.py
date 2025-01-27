@@ -1,16 +1,15 @@
 class Solution:
     def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
-        if n == 1: return[0]
-
+        if not edges: return[0]
         tree = defaultdict(list)
         for a,b in edges:
             tree[a].append(b)
             tree[b].append(a)
         
         leaves = deque([i for i in range(n) if len(tree[i]) == 1])
-        
+
         remains = n
-        while remains>2:
+        while remains > 2:
             num_leaves = len(leaves)
             remains-=num_leaves
             for _ in range(num_leaves):
